@@ -98,7 +98,7 @@ def loadPGM(fname):
   #
   magic = strip_comments(inf.readline())
   if (magic != "P2"):
-    raise PPM_Exception, 'The file being loaded does not appear to be a valid ASCII PGM file'
+    raise(PGM_Exception, 'The file being loaded does not appear to be a valid ASCII PGM file')
 
   #
   # Get the image dimensions
@@ -109,7 +109,7 @@ def loadPGM(fname):
   width = int(width)
   height = int(height)
   if (width <= 0) or (height <= 0):
-    raise PGM_Exception, "The file being loaded does not appear to have valid dimensions (" + str(width) + " x " + str(height) + ")"
+    raise(PGM_Exception, "The file being loaded does not appear to have valid dimensions (" + str(width) + " x " + str(height) + ")")
 
   #
   # Get the maximum value -- this should always be 255 
@@ -156,7 +156,7 @@ def loadPGM(fname):
 #
 def limit(high, low, value):
   if (value < low) or (value > high):
-    raise PGM_Exception, str(value) + " is outside of the range " + str(high) + " to " + str(low)
+    raise(PGM_Exception, str(value) + " is outside of the range " + str(high) + " to " + str(low))
 
 #
 #  displayImage: A function that displays an image using QuickDraw

@@ -1,12 +1,18 @@
 import pgm
 import imageprocessing as ip
+import math
 
 print("Coursera Image Processing Week 1")
 
-image = pgm.loadPGM("fractal_tree.ascii.pgm")
+image = pgm.loadPGM("casablanca.ascii.pgm")
 
-image = ip.adjustGreyscale(image,7)
+image_greyscale = ip.adjustGreyscale(image,4)
+pgm.writeImage(image_greyscale,"image_greyscale.pgm")
 
-pgm.writeImage(image,"image_copy.pgm")
+image_spatial_avg = ip.spatialAverage(image,3)
+pgm.writeImage(image_spatial_avg,"image_spatial_avg.pgm")
+
+image_rotated = ip.rotate(image,math.pi / 4)
+pgm.writeImage(image_rotated,"image_rotate.pgm")
 
 exit()
