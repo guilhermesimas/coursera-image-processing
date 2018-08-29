@@ -10,6 +10,7 @@ def height(image):
 def adjustGreyscale(img, factor):
     if  1 > factor > 7:
         print("Invalid factor. Use between 1 and 8 please.")
+        exit()
 
     mask = (2**factor) - 1;
 
@@ -29,6 +30,7 @@ def adjustGreyscale(img, factor):
 def spatialAverage(img, factor):
     if  factor < 1:
         print("Invalid factor. Use larger than 1 please.")
+        exit()
 
     w = width(img)
     h = height(img)
@@ -100,3 +102,29 @@ def rotateNoAliasing(img,degree):
                 processed_img[x][y] = img[original_x][original_y]
     return processed_img
 
+def reduceResolution(img,blockSize):
+
+    w = width(img)
+    h = height(img)
+    
+    if blockSize > w and blockSize > h:
+        print("Block size too big for image.")
+        exit()
+
+    w -= (w % blockSize)
+    h -= (h % blockSize)
+
+    processed_img = [[0] * h  for i in range(w)]
+
+    for x in range(0,w,blockSize):
+        for y in range(0,h,blockSize):
+            block_sum = 0
+            for i in range(x,x+blockSize):
+                for j in range(y,y+blockSize):
+                    block_sum += img[i][j]
+            block_sum /= blockSize ** 2
+            for i in range(x,x+blockSize):
+                for j in range(y,y+blockSize):
+                    processed_img[i][j] = int(block_sum)
+
+    return processed_img

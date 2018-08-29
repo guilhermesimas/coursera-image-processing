@@ -18,4 +18,7 @@ pgm.writeImage(image_rotated,"image_rotate.pgm")
 image_rotated_no_aliasing = ip.rotateNoAliasing(image,math.pi / 6)
 pgm.writeImage(image_rotated_no_aliasing,"image_rotated_no_aliasing.pgm")
 
+image_reduced_res = ip.reduceResolution(image,4)
+pgm.writeImage(image_reduced_res,"image_reduced_red.pgm")
+
 exit()
