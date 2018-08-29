@@ -1,15 +1,12 @@
-import ppm
+import pgm
+import imageprocessing as ip
 
 print("Coursera Image Processing Week 1")
 
-image = ppm.createImage(50,50)
+image = pgm.loadPGM("fractal_tree.ascii.pgm")
 
-ppm.writeImage(image)
+image = ip.adjustGreyscale(image,7)
 
-import pgm
-
-image = pgm.createImage(50,50)
-
-pgm.writeImage(image)
+pgm.writeImage(image,"image_copy.pgm")
 
 exit()
