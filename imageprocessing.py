@@ -60,14 +60,43 @@ def rotate(img,degree):
     w = width(img)
     h = height(img)
 
-    processed_img = [[0]*h]*w 
+    processed_img = [[0]*h for i in range(w)] 
+#    processed_img = copy.deepcopy(img)
+
+    mid_x = w/2
+    mid_y = h/2
 
     for x in range(0,w):
         for y in range(0,h):
-            new_x = int(x*math.cos(degree) - y*math.sin(degree))
-            new_y = int(x*math.sin(degree) + y*math.cos(degree))
+            new_x = (x - mid_x)*math.cos(degree) - (y - mid_y)*math.sin(degree)
+            new_y = (x - mid_x)*math.sin(degree) + (y - mid_y)*math.cos(degree)
+
+            new_x = int(new_x + mid_x)
+            new_y = int(new_y + mid_y)
+
             if 0 <= new_x < w and 0 <= new_y < h:
                 processed_img[new_x][new_y] = img[x][y]
     return processed_img
 
-    
+def rotateNoAliasing(img,degree):
+
+    w = width(img)
+    h = height(img)
+
+    processed_img = [[0]*h for i in range(w)] 
+
+    mid_x = w/2
+    mid_y = h/2
+
+    for x in range(0,w):
+        for y in range(0,h):
+            original_x = (x - mid_x)*math.cos(degree) + (y - mid_y)*math.sin(degree)
+            original_y = -(x - mid_x)*math.sin(degree) + (y - mid_y)*math.cos(degree)
+
+            original_x = int(original_x + mid_x)
+            original_y = int(original_y + mid_y)
+
+            if 0 <= original_x < w and 0 <= original_y < h:
+                processed_img[x][y] = img[original_x][original_y]
+    return processed_img
+
