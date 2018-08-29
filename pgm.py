@@ -97,7 +97,7 @@ def loadPGM(fname):
   # reading from an ASCII PPM file (denoted by P3)
   #
   magic = strip_comments(inf.readline())
-  if (magic != "P5"):
+  if (magic != "P2"):
     raise PPM_Exception, 'The file being loaded does not appear to be a valid ASCII PGM file'
 
   #
@@ -141,7 +141,7 @@ def loadPGM(fname):
   for x in range(0,width):
     image.append([])
     for y in range(0,height):
-      image[x][y] = int(pixel_list[(y * width + x)])
+      image[x].append(int(pixel_list[(y * width + x)]))
 
   return image
 
@@ -191,14 +191,14 @@ def createImage(x, y):
   for i in range(0, x):
     retval.append([])
     for j in range(0, y):
-      retval[i][j] = 0
+      retval[i].append(0)
 
   return retval
 
-def writeImage(img, fname="img.ppm"):
+def writeImage(img, fname="img.pgm"):
   inf = open(fname,"w")
 
-  inf.write("P5" + "\n")
+  inf.write("P2" + "\n")
   inf.write("# "+ fname + "\n")
 
   w = width(img)

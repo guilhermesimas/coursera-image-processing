@@ -8,4 +8,8 @@ ppm.writeImage(image)
 
 import pgm
 
+image = pgm.createImage(50,50)
+
+pgm.writeImage(image)
+
 exit()
