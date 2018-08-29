@@ -207,6 +207,16 @@ def writeImage(img, fname="img.ppm"):
   h = height(img)
 
   inf.write("" + str(w) + " " + str(h) + "\n")
+  inf.write("255" + "\n")
+
+  for j in range(0, h):
+    inf.write("\n")
+    for i in range(0, w):
+      inf.write(" " + str(img[i][j][0]))
+      inf.write(" " + str(img[i][j][1]))
+      inf.write(" " + str(img[i][j][2]))
+
+  inf.write("\n")
 
   inf.close()  # We are done with the file -- be nice and close it 
 
