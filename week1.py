@@ -6,4 +6,6 @@ image = ppm.createImage(50,50)
 
 ppm.writeImage(image)
 
+import pgm
+
 exit()
